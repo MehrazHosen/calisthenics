@@ -7,10 +7,7 @@ $DB = "calisthenics";
 
 $con = mysqli_connect($host,$user, $password, $DB);
 if(isset($_POST['username'])){
-//     $uname = $_POST['username'];
-//     $password = $_POST['Password'];
 
-    // $result = mysqli_query($con,"select * from admin where user='".$uname."'AND Pass='".$password."' limit 1");
     if(!$con){
         echo "DATABASE CONNECTION FAILED";
         exit();
@@ -22,12 +19,12 @@ if(isset($_POST['username'])){
             $sql = "SELECT * from admin WHERE Admin_ID = '$username' AND Password = '$Password'";
 		    if (($result = $con->query($sql)) !== FALSE){
                 if ($row = $result->fetch_assoc()){
-                    echo "You have successfully Logged in";
+                    // echo "You have successfully Logged in";
+                    header('location: Admin/Admin_Dashboard.php');
                     exit();
                 }
                 else {
-                    echo "Login Failed";
-                    exit();
+                    header('location: admin_login.php');
                 }
             }
         }
@@ -56,7 +53,8 @@ if(isset($_POST['username'])){
     }
 
     body {
-        background: linear-gradient(-135deg, #c850c0, #4158d0);
+        /* background: linear-gradient(-135deg, #c850c0, #4158d0); */
+        background: white;
     }
 
 
@@ -71,9 +69,9 @@ if(isset($_POST['username'])){
             <div class="LoginPhpCss">
                 <form action="#" method="POST">
                     <h1>Admin Login</h1>
-                    <input class="Login_admin" type="text" name="username" placeholder="Admin_ID">
+                    <input class="Login_admin" type="text" name="username" placeholder="Admin_ID" required>
                     <br>
-                    <input class="LoginPassword" type="password" name="Password" placeholder="Password">
+                    <input class="LoginPassword" type="password" name="Password" placeholder="Password" required>
                     <br>
                     <input class="LoginSubmitBTN" type="submit" value="LOGIN">
                     <p><button class="LoginToMainFileButton"><a href="./index.php">HOME</a></button></p>
@@ -83,6 +81,15 @@ if(isset($_POST['username'])){
 </div>
 </div>
 <style>
+
+.LOGINmainContainer{
+    transition: box-shadow 1s;
+}
+.LOGINmainContainer:hover{
+    box-shadow: 0 0px 50px rgb(0 0 0/40%);
+
+}
+
 .LoginToMainFileButton a{
 color: white;
 background-color: rgb(187, 187, 187);
@@ -93,7 +100,9 @@ top: -172px;
 right: 659px;
 font-weight: 900;
 }
-
+.LoginToMainFileButton a:hover{
+    background-color: #57b846;
+}
 .Not_a_Member_So_Back_Login_To_Register  a{
     color: black;
     position: relative;

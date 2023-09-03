@@ -23,3 +23,8 @@
 ### Payment Option
 
 - **Payment Processing**: Seamlessly handle membership payments and transactions within the system for added convenience and financial transparency.
+
+## Database
+
+The Calisthenics Gym Management System is powered by a MySQL database, which is managed through XAMPP. This database serves as the backbone of the system, storing essential information related to members, employees, payments, and more. XAMPP ensures efficient data management, allowing seamless integration with the system's functionalities.
+
